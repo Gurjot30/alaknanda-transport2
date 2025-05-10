@@ -247,20 +247,21 @@ header:hover {
     line-height: 1.5;
   }
 
-.navbar {
-  background-color: #ffefdd;
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: black;
-}
+  .navbar {
+    background-color: #ffefdd;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  .logo img {
+    height: 60px; /* Adjust the height based on your preference */
+    width: auto;
+    max-width: 100%; /* Keeps the logo proportional */
+  }
+  
 
 .nav-links {
   list-style: none;
@@ -297,10 +298,7 @@ header:hover {
 }
 
 
-.logo img {
-  height: 40px;
-  /* Adjust height as needed */
-}
+
 
 
 
