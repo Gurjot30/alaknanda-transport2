@@ -254,6 +254,7 @@ header:hover {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    height: 85px;
   }
   
   .logo img {
@@ -297,7 +298,35 @@ header:hover {
   background-color: #1ebe5d;
 }
 
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    height: auto; /* Remove fixed height */
+    padding: 1rem;
+  }
 
+  .logo img {
+    height: 50px; /* Adjust logo size for smaller screens */
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column; /* Stack links vertically */
+    gap: 1rem; /* Smaller gap between items */
+    margin-top: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 18px; /* Slightly smaller font size for mobile */
+  }
+
+  .request-btn {
+    width: 100%; /* Full width button on mobile */
+    padding: 12px 0; /* Adjust padding for better appearance */
+    text-align: center;
+  }
+}
 
 
 
