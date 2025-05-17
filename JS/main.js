@@ -50,45 +50,27 @@ document.addEventListener("DOMContentLoaded", () => {
   wrapper.addEventListener("mouseleave", () => {
     interval = setInterval(/*…*/);
   });
-
-  gsap.registerPlugin(ScrollTrigger);
-
-const video = document.getElementById("maskedVideo");
-
-// Try playing immediately if possible
-video.play().catch(err => console.log("Autoplay issue:", err));
-
-let tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".hero",
-    start: "top top",
-    end: "bottom+=1200 top",
-    scrub: true,
-    pin: true,
-    anticipatePin: 1,
-    onUpdate: (self) => {
-      if (self.progress > 0.01 && video.paused) {
-        video.play();
-      }
-      if (self.direction === -1 && self.progress < 0.9) {
-        video.pause();
-        video.currentTime = 0;
-      }
-    },
-  },
 });
 
-tl.to(".top-text", { y: "-100px", opacity: 0, ease: "expo.out" }, 0)
-  .to(".bottom-text", { y: "100px", opacity: 0, ease: "expo.out" }, 0.1)
-  .to(".video-mask", {
-    width: "100vw",
-    height: "100vh",
-    top: "0%",
-    left: "0%",
-    borderRadius: "0%",
-    transform: "translate(0%, 0%)",
-    ease: "expo.out",
-  }, 0.2);
 
 
+window.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("main-video");
+  const videoContainer = document.querySelector(".container-video");
+  const logo = document.querySelector(".logo-overlay");
+
+  // Ensure autoplay works
+  video.play().catch(err => console.warn("Autoplay blocked:", err));
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const heroHeight = window.innerHeight;
+
+    // Zoom from scale(1) up to scale(1.4)
+    const zoomFactor = 1 + Math.min(scrollY / heroHeight, 1) * 0.4;
+    videoContainer.style.transform = `scale(${zoomFactor})`;
+
+    // Logo fades out on scroll
+    logo.style.opacity = `${1 - Math.min(scrollY / heroHeight, 1)}`;
+  });
 });
