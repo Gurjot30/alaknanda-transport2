@@ -337,7 +337,7 @@ header:hover {
     .hero {
       width: 100%;
       height: auto;
-      background: #ffffff;
+      background: #D3D3D3;
       position: relative;
       overflow: hidden;
       /* Corrected from 100wh */
@@ -372,16 +372,16 @@ header:hover {
     /* Centered and fading logo */
     .logo-overlay {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      top: 40%;
+      left: 47%;
+      transform: translate(-40%, -40%);
       z-index: 10;
-      width: 80%;
+      width: 50%;
       transition: opacity 0.5s ease;
     }
 
     .logo-overlay img{
-      background: #ffffff;
+      background: #D3D3D3;
       width: 100%;
     }
 
