@@ -54,23 +54,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// window.addEventListener("DOMContentLoaded", () => {
+//   const video = document.getElementById("main-video");
+//   const videoContainer = document.querySelector(".container-video");
+//   const logo = document.querySelector(".logo-overlay");
+
+//   // Ensure autoplay works
+//   video.play().catch(err => console.warn("Autoplay blocked:", err));
+
+//   window.addEventListener("scroll", () => {
+//     const scrollY = window.scrollY;
+//     const heroHeight = window.innerHeight;
+
+//     // Zoom from scale(1) up to scale(1.4)
+//     const zoomFactor = 1 + Math.min(scrollY / heroHeight, 1) * 0.4;
+//     videoContainer.style.transform = `scale(${zoomFactor})`;
+
+//     // Logo fades out on scroll
+//     logo.style.opacity = `${1 - Math.min(scrollY / heroHeight, 1)}`;
+//   });
+// });
+
+
 window.addEventListener("DOMContentLoaded", () => {
   const video = document.getElementById("main-video");
   const videoContainer = document.querySelector(".container-video");
   const logo = document.querySelector(".logo-overlay");
 
-  // Ensure autoplay works
   video.play().catch(err => console.warn("Autoplay blocked:", err));
+
+  const baseWidth = 100;
+  const baseHeight = 100;
+
+  const scaleX = window.innerWidth / baseWidth;
+  const scaleY = window.innerHeight / baseHeight;
+  const maxScale = Math.max(scaleX, scaleY); // to cover entire screen
 
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
     const heroHeight = window.innerHeight;
+    const progress = Math.min(scrollY / heroHeight, 1);
 
-    // Zoom from scale(1) up to scale(1.4)
-    const zoomFactor = 1 + Math.min(scrollY / heroHeight, 1) * 0.4;
-    videoContainer.style.transform = `scale(${zoomFactor})`;
+    const scale = 1 + progress * (maxScale - 1);
+    const top = 53.3 - progress * (53.3 - 53);
+    const left = 55.4 - progress * (55.4 - 55 + 5);
 
-    // Logo fades out on scroll
-    logo.style.opacity = `${1 - Math.min(scrollY / heroHeight, 1)}`;
+    videoContainer.style.top = `${top}%`;
+    videoContainer.style.left = `${left}%`;
+    videoContainer.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+    logo.style.opacity = `${1 - progress}`;
   });
 });
